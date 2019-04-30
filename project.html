@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+	<html>
+		<head>
+			<link rel="stylesheet" type="text/css" href="css/style.css">
+			<title>Projects Page</title>
+		</head>
+		<body>
+			<ul class="a">
+				<li><a class="pagelink"href="index.html">Home</a></li>
+				<li><a class="pagelink"href="#top">Projects</a></li>
+				<li><a class="pagelink"href="about.html">About</a></li>
+			</ul>
+			
+			<div id="banner">
+				<div class="content">
+					<h1>This is my Projects Page <br><br> Full of my Hobbies/Classwork</h1>
+				</div>
+			</div>
+			<div class="roasting">
+				<h2> It's the Caesar Cipher </h2>
+				<p>
+					The Cesar cipher is a method of encrypting text. As a user inputs a value and changes it by using the ascii code from each charcter in the input, moving it via a specified amount. Ex. Hello would be changed to wtaad if changed by fourteen places.
+				</p>
+				<div class="text">
+					<label for="caesarInput">Input</label>
+				</div>
+				<div class="text">
+					<input id="caesarInput">
+				</div>
+				<div class="text">
+					<label for="caesarNumber">Now choose how far the letters will go <br> Positive will move it the right while changing it to Negative will make it move left.</label>
+				</div>
+				<div class="text">
+					<input id="caesarNumber" type="number" min="-99" max="99" step="1" value="14">
+				</div>
+				<div class="text" id="caesarButtons">
+					<button type="button" onclick="caesar(1)" class="buttons"> Encrypt </button>
+					<button type="button" onclick="caesar(-1)" class="buttons"> Decrypt </button>
+				</div>
+				<script>
+				function caesar(a) {
+				var input = document.getElementById("caesarInput").value;
+				var direction = (parseInt(document.getElementById("caesarNumber").value)) * a;
+				var output = "";
+				for (i = 0; i < input.length; i++) {
+				var inChar = input.charCodeAt(i);
+				if ((inChar >= 65 && inChar <= 90) || (inChar >= 97 && inChar <= 122)) {
+				var outCharPos = inChar + direction;
+				switch (true) {
+				case outCharPos < 65:
+				outCharPos = 91 - (65 - outCharPos);
+				break;
+				case outCharPos > 90 && inChar <= 90:
+				outCharPos = (outCharPos - 90) + 64;
+				break;
+				case outCharPos < 97 && inChar >= 97:
+				outCharPos = 123 - (97 - outCharPos);
+				break;
+				case outCharPos > 122:
+				outCharPos = (outCharPos - 122) + 96;
+				break;
+				default:
+				outCharPos = inChar + direction;
+				}
+				var outChar = String.fromCharCode(outCharPos);
+				output = output + outChar;
+				}
+				else {
+				output = output + input[i];
+				}
+				}
+				document.getElementById("caesarInput").value = (output);
+				}
+				</script>
+				<br>
+				
+				<h2> Fidning the Average Test score </h2>
+				<p>
+					This is a Jave Script exercise that useses stored data and arrays to be used later. Getting the average will be calculated by the tests you have completed with an input prompt for each grade for each test. When the button is pressed the average should be calculated.
+				</p>
+				<button type="button" onclick="calcAverage()" class="text"> Find My Average </button>
+				<p id="averageOutput"></p>
+				<script>
+				function calcAverage() {
+				var total = 0;
+				var testNum = 1;
+				var numTests;
+				var testString;
+				var testScores = [];
+				numTests = parseInt(prompt("How many takes have you taken?"));
+				while (testNum <= numTests) {
+				testString = prompt("Enter your test score for test number" + testNum);
+				total = total + parseInt(testString);
+				testScores.push(testString);
+				testNum++;
+				}
+				var testAverage = total / numTests;
+				if (numTests === 0 || isNaN(numTests)) {
+				document.getElementById("averageOutput").innerHTML = ("Don't try and trick me");
+				}
+				else {
+				document.getElementById("averageOutput").innerHTML = ("You got an average score of " + testAverage);
+				}
+				}
+				</script>
+				<h2> My Electric Skateboard </h2>
+				<br>
+				<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRb9bukS6FK-SLbEUnUASQ29e_8GX44EeRAFK_zwCNonrx4Au9XgLiZJ4oA4IDHHmXxkScw2ZmRbuaa/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+				<br>
+				<p>Here is an audio clip of the skateboard on the actual concrete</p>
+				<audio controls loop>
+					<source src="media/skateboard.mp3" type="audio/mpeg">
+					Your browser does not support the audio element.
+				</audio>
+				<br>
+				<br>
+				<h2> My Custom Built Computer </h2>
+				<br>
+				<video width="320" height="240" controls>
+					<source src="media/computer.mp4" type="video/mp4">
+					<source src="media/computer.ogg" type="video/ogg">
+					Your browser does not support the video tag.
+				</video>
+			</div>
+		</body>
+	</html>
